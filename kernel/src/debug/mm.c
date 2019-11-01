@@ -12,5 +12,20 @@
  * @return Amount of memory available in bytes.
  */
 size_t debug_get_base_memory_size(void) {
-    return 0;
+	//this pointer points at the beginning of memory space
+    char* volatile p =(char*)&_kernel_end +1;
+	//size counter
+	int size = 0;
+	//pointer for testing whether we are at the end
+	int volatile test;
+	
+    while (true) {
+        test = *p;
+        *p = test + 1;
+        if (*p == test)
+            return size; 
+        *p = test;
+		size++;
+        p++;       
+    }   
 }

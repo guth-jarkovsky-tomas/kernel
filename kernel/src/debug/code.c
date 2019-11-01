@@ -14,5 +14,14 @@
  * @instruction_count How many instructions to print.
  */
 void debug_dump_function(const char* name, uintptr_t address, size_t instruction_count) {
-    printk("%x <%s>:\n", address, name);
+	//get pointer to address
+	int* a = (int*)address;
+	//print header
+    printk("%x <%s>:", address, name);
+    for (size_t i = 0; i < instruction_count; i++) {
+		//I created a new print output for printing out number in correct formatting
+        printk("%x:        %q", a, *a);
+        a++;
+    }
 }
+

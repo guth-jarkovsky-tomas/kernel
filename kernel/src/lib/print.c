@@ -15,6 +15,7 @@ typedef struct {
 
 void print_signed_int(int num);
 void print_int(int num);
+void print_unint(unsigned int num)
 void print_hex(unsigned int num);
 void print_hex_eight(uintptr_t p);
 void print_hex_big(unsigned int num);
@@ -37,6 +38,20 @@ void print_int(int num) {
 	}
 	int j = num % 10;
 	print_int(num / 10);
+	if (j < 0) {
+		j = -j;
+	}
+	char c = j + '0';
+	printer_putchar(c);
+}
+
+//prints unsigned positive ints
+void print_unint(unsigned int num) {
+	if (num == 0) {
+		return;
+	}
+	int j = num % 10;
+	print_unint(num / 10);
 	if (j < 0) {
 		j = -j;
 	}
@@ -151,7 +166,11 @@ void printk(const char* format, ...) {
 			}
 			else if (*format == 'u') {
 				unsigned int u = va_arg(argp, unsigned int);
-				print_int(u);
+				if (u==0)
+				{
+					printer_putchar('0');
+				}
+				print_unint(u);
 			}
 
 			else if (*format == 'd') {

@@ -15,7 +15,7 @@ typedef struct {
 
 void print_signed_int(int num);
 void print_int(int num);
-void print_unint(unsigned int num)
+void print_unint(unsigned int num);
 void print_hex(unsigned int num);
 void print_hex_eight(uintptr_t p);
 void print_hex_big(unsigned int num);

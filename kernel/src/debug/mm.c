@@ -13,7 +13,7 @@
  */
 size_t debug_get_base_memory_size(void) {
 	//this pointer points at the beginning of memory space
-    long* volatile p =(long*)&_kernel_end +1;
+    char* volatile p[1024] =(char*)&_kernel_end +1;
 	//size counter
 	int size = 0;
 	long volatile test;
@@ -22,7 +22,7 @@ size_t debug_get_base_memory_size(void) {
         test = *p;
         *p = test + 1;
         if (*p == test)
-            return (size/4); 
+            return size; 
         *p = test;
 		size++;
         p++;       

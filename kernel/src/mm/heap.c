@@ -16,6 +16,11 @@ struct data_block {
     struct data_block* prev; 
 }
 
+void heap_init()
+{
+    
+}
+
 void* kmalloc(size_t size) {   
 
     //basic safety
